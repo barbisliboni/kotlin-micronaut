@@ -1,0 +1,22 @@
+micronaut:
+  application:
+    name: vehicleService
+datasources:
+  default:
+    url: jdbc:postgresql://127.0.0.1:5432/dbvehicle
+    driverClassName: org.postgresql.Driver
+    username: postgres
+    password: '123456'
+    schema-generate: CREATE_DROP
+    dialect: POSTGRES
+
+jpa:
+  default:
+    package-to-scan:
+      - 'br.com.course.model'
+    properties:
+      hibernate:
+        hbm2ddl:
+          auto: update
+        show_sql: true
+        format_sql: true
