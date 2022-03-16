@@ -9,10 +9,10 @@ import java.time.LocalDate
 
 @Singleton
 class SaleService(
-    private val vehicleHttp: VehicleHttp
+    private val vehicleService: VehicleService
 ) {
     fun makeSale(saleInput: SaleInput){
-        val vehicle = vehicleHttp.findById(saleInput.vehicle.toLong())
+        val vehicle = vehicleService.getVehicle(saleInput.vehicle.toLong())
         var installments: List<Installment> = ArrayList<Installment>()
         var installmentPrice = saleInput.price.divide(saleInput.installments.toBigDecimal())
         var expireDate = LocalDate.now().plusMonths(1)
@@ -24,6 +24,6 @@ class SaleService(
         }
 
         var sale = Sale(saleInput.client, vehicle, saleInput.price, installments)
-        print(sale)
+        println(sale)
     }
 }
