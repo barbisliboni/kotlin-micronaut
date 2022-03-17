@@ -1,0 +1,21 @@
+micronaut:
+  application:
+    name: apiGateway
+  server:
+    port: 9090
+  config-client:
+      enabled: true
+#netty:
+#  default:
+#    allocator:
+#      max-order: 3
+consul:
+  client:
+    defaultZone: "ms-consul:8500"
+    registration:
+      enabled: true
+gateway:
+  services:
+    - vehicle-service
+    - store-service
+    - report-service
