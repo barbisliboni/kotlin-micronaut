@@ -4,6 +4,7 @@ plugins {
     id("org.jetbrains.kotlin.plugin.allopen") version "1.6.10"
     id("com.github.johnrengelman.shadow") version "7.1.1"
     id("io.micronaut.application") version "3.2.2"
+    id("org.jetbrains.kotlin.plugin.noarg") version "1.4.10"
 }
 
 version = "0.1"
@@ -25,7 +26,8 @@ dependencies {
     runtimeOnly("ch.qos.logback:logback-classic")
     implementation("io.micronaut:micronaut-validation")
     implementation("io.micronaut.kafka:micronaut-kafka")
-
+    implementation("io.micronaut.mongodb:micronaut-mongo-sync")
+    implementation("io.micronaut.discovery:micronaut-discovery-client")
     runtimeOnly("com.fasterxml.jackson.module:jackson-module-kotlin")
 
 }
@@ -58,6 +60,11 @@ micronaut {
         incremental(true)
         annotations("br.com.course.*")
     }
+}
+
+noArg{
+    annotation("br.com.course.model.NoArg")
+    invokeInitializers = true
 }
 
 
