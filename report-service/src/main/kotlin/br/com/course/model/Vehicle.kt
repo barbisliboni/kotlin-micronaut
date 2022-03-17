@@ -1,5 +1,6 @@
 package br.com.course.model
 
+@NoArg
 data class Vehicle(
     val id: Long,
     val model: String,
