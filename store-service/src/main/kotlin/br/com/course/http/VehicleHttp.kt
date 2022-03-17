@@ -6,7 +6,7 @@ import io.micronaut.http.annotation.PathVariable
 import io.micronaut.http.client.annotation.Client
 import io.micronaut.retry.annotation.CircuitBreaker
 
-@Client(id = "http://localhost:8080") //where the vehicle microservice is running
+@Client(id = "vehicle-service") //where the vehicle microservice is running
 @CircuitBreaker
 interface VehicleHttp {
     @Get("/vehicles/{id}")
