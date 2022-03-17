@@ -2,11 +2,16 @@ micronaut:
   application:
     name: storeService
   server:
-    port: 8081
-netty:
-  default:
-    allocator:
-      max-order: 3
+    port: -1
+#netty:
+#  default:
+#    allocator:
+#      max-order: 3
 kafka:
   bootstrap:
-    servers: localhost:9092
+    servers: kafka-server:9092
+consul:
+  client:
+    registration:
+      enabled: true
+    defaultZone: "ms-consul:8500"
