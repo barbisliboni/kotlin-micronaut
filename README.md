@@ -54,40 +54,43 @@ http://localhost:9090/report-service/sales
 
 ## How to use it?
 
-First, run the **docker-compose.yml** file to run all the containers:
-```docker-compose up -d```, and right after, run ```docker network create micronaut-net``` to create a Docker network. 
+First, run ```docker network create micronaut-net``` to create a Docker network, ```docker run --network micronaut-net -p 8500:8500 --name ms-consul consul``` to run Consul container, and right after, run  the **docker-compose.yml** file to run all the containers:
+```docker-compose up -d```. Don't forget to run these: <br>
+
+```docker run -d --name zookeeper-server --network micronaut-net -e ALLOW_ANONYMOUS_LOGIN=yes bitnami/zookeeper:latest```<br>
+```docker run -d --name kafka-server --network micronaut-net -e ALLOW_PLAINTEXT_LISTENER=yes -e KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper-server:2181 bitnami/kafka:latest```
 
 After, go to the project, open all four microservices and open the Gradle right side menu, **Execute Gradle Task** and run ```gradle clean build -x test```. It will build the project as a .jar file. 
 
 Then, you will open your terminal and go to the folder and file where *x* microservice is (one by one), starting with **api-gateway**.
 
-Generating **api-gateway** image:
+Generating **api-gateway** image:<br>
 ```docker build -t api-gateway:v1 .``` 
 
-Uploading **api-gateway** container:
+Uploading **api-gateway** container:<br>
 ```docker run -p 9090:9090 --name api-gateway --network micronaut-net api-gateway:v1```
 
-Generating **vehicle-service** image:
+Generating **vehicle-service** image:<br>
 ```docker build -t vehicle-service:v1 .```
 
-Uploading **vehicle-service** container:
+Uploading **vehicle-service** container:<br>
 ```docker run -P --network micronaut-net vehicle-service:v1```
 
-Generating **store-service** image:
+Generating **store-service** image:<br>
 ```docker build -t store-service:v1 .```
 
-Uploading **store-service** container:
+Uploading **store-service** container:<br>
 ```docker run -P --network micronaut-net store-service:v1```
 
-Generating **report-service** image:
+Generating **report-service** image:<br>
 ```docker build -t report-service:v1 .```
 
-Uploading **report-service** container:
+Uploading **report-service** container:<br>
 ```docker run -P --network micronaut-net report-service:v1```
 
 After all this, you will be able to see all microservices on **Consul** **http://localhost:8500/**. With **Consul**, when the microservices are up, they will be registered at *Consul*, specifying its address, therefore, when a microservice wants to communicate with other, it just gets the address on **Consul**.
 
-To check the data on **MongoDB**, run this commands:
-```docker run -it --rm --network micronaut-net mongo mongo --host ms-mongo -u root -p e296cd9f --authenticationDatabase```
-```admin sales```
+To check the data on **MongoDB**, run this commands:<br>
+```docker run -it --rm --network micronaut-net mongo mongo --host ms-mongo -u root -p e296cd9f --authenticationDatabase```<br>
+```admin sales```<br>
 ```db.sale.find({})```
