@@ -54,8 +54,8 @@ http://localhost:9090/report-service/sales
 
 ## How to use it?
 
-First, run the **docker-compose.yml** file to run all the containers:
-```docker-compose up -d```, and right after, run ```docker network create micronaut-net``` to create a Docker network. 
+First, run ```docker network create micronaut-net``` to create a Docker network, and right after, run  the **docker-compose.yml** file to run all the containers:
+```docker-compose up -d```.
 
 After, go to the project, open all four microservices and open the Gradle right side menu, **Execute Gradle Task** and run ```gradle clean build -x test```. It will build the project as a .jar file. 
 
