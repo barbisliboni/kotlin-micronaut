@@ -55,7 +55,10 @@ http://localhost:9090/report-service/sales
 ## How to use it?
 
 First, run ```docker network create micronaut-net``` to create a Docker network, and right after, run  the **docker-compose.yml** file to run all the containers:
-```docker-compose up -d```.
+```docker-compose up -d```. Don't forget to run these: <br>
+
+```docker run -d --name zookeeper-server --network micronaut-net -e ALLOW_ANONYMOUS_LOGIN=yes bitnami/zookeeper:latest```<br>
+```docker run -d --name kafka-server --network micronaut-net -e ALLOW_PLAINTEXT_LISTENER=yes -e KAFKA_CFG_ZOOKEEPER_CONNECT=zookeeper-server:2181 bitnami/kafka:latest```
 
 After, go to the project, open all four microservices and open the Gradle right side menu, **Execute Gradle Task** and run ```gradle clean build -x test```. It will build the project as a .jar file. 
 
