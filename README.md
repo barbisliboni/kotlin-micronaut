@@ -61,33 +61,33 @@ After, go to the project, open all four microservices and open the Gradle right 
 
 Then, you will open your terminal and go to the folder and file where *x* microservice is (one by one), starting with **api-gateway**.
 
-Generating **api-gateway** image:
+Generating **api-gateway** image:<br>
 ```docker build -t api-gateway:v1 .``` 
 
-Uploading **api-gateway** container:
+Uploading **api-gateway** container:<br>
 ```docker run -p 9090:9090 --name api-gateway --network micronaut-net api-gateway:v1```
 
-Generating **vehicle-service** image:
+Generating **vehicle-service** image:<br>
 ```docker build -t vehicle-service:v1 .```
 
-Uploading **vehicle-service** container:
+Uploading **vehicle-service** container:<br>
 ```docker run -P --network micronaut-net vehicle-service:v1```
 
-Generating **store-service** image:
+Generating **store-service** image:<br>
 ```docker build -t store-service:v1 .```
 
-Uploading **store-service** container:
+Uploading **store-service** container:<br>
 ```docker run -P --network micronaut-net store-service:v1```
 
-Generating **report-service** image:
+Generating **report-service** image:<br>
 ```docker build -t report-service:v1 .```
 
-Uploading **report-service** container:
+Uploading **report-service** container:<br>
 ```docker run -P --network micronaut-net report-service:v1```
 
 After all this, you will be able to see all microservices on **Consul** **http://localhost:8500/**. With **Consul**, when the microservices are up, they will be registered at *Consul*, specifying its address, therefore, when a microservice wants to communicate with other, it just gets the address on **Consul**.
 
-To check the data on **MongoDB**, run this commands:
-```docker run -it --rm --network micronaut-net mongo mongo --host ms-mongo -u root -p e296cd9f --authenticationDatabase```
-```admin sales```
+To check the data on **MongoDB**, run this commands:<br>
+```docker run -it --rm --network micronaut-net mongo mongo --host ms-mongo -u root -p e296cd9f --authenticationDatabase```<br>
+```admin sales```<br>
 ```db.sale.find({})```
