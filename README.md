@@ -54,7 +54,7 @@ http://localhost:9090/report-service/sales
 
 ## How to use it?
 
-First, run ```docker network create micronaut-net``` to create a Docker network, and right after, run  the **docker-compose.yml** file to run all the containers:
+First, run ```docker network create micronaut-net``` to create a Docker network, ```docker run --network micronaut-net -p 8500:8500 --name ms-consul consul``` to run Consul container, and right after, run  the **docker-compose.yml** file to run all the containers:
 ```docker-compose up -d```. Don't forget to run these: <br>
 
 ```docker run -d --name zookeeper-server --network micronaut-net -e ALLOW_ANONYMOUS_LOGIN=yes bitnami/zookeeper:latest```<br>
