@@ -88,7 +88,7 @@ Generating **report-service** image:<br>
 Uploading **report-service** container:<br>
 ```docker run -P --network micronaut-net report-service:v1```
 
-After all this, you will be able to see all microservices on **Consul** **http://localhost:8500/**. With **Consul**, when the microservices are up, they will be registered at *Consul*, specifying its address, therefore, when a microservice wants to communicate with other, it just gets the address on **Consul**.
+After all this, you will be able to see all microservices on **Consul** **http://localhost:8500/**. With **Consul**, when the microservices are up, they will be registered there, specifying its address, therefore, when a microservice wants to communicate with other, it just gets the address on **Consul**.
 
 To check the data on **MongoDB**, run this commands:<br>
 ```docker run -it --rm --network micronaut-net mongo mongo --host ms-mongo -u root -p e296cd9f --authenticationDatabase```<br>
